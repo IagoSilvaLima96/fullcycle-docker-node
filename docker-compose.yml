@@ -1,0 +1,34 @@
+services:
+  db:
+    container_name: fullcycle-docker-node-database
+    build: ./database
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - internal
+  app:
+    container_name: "fullcycle-docker-node-api"
+    build: ./api
+    networks:
+      - internal
+    depends_on:
+      - db
+  nginx:
+    restart: always
+    build: ./nginx
+    depends_on:
+      - app
+    networks:
+      - internal
+    ports:
+      - "8080:80"
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
