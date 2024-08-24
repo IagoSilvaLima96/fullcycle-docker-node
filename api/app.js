@@ -18,7 +18,7 @@ async function getPersons() {
   return await repository.getPersons();
 }
 
-async function handle(req, res) {
+async function handle(_, res) {
   await createPerson();
   const data = await getPersons();
   res.render("index", { data });
