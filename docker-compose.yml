@@ -8,13 +8,31 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - internal
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p$$MYSQL_ROOT_PASSWORD",
+        ]
+      interval: 5s
+      timeout: 10s
+      retries: 3
   app:
     container_name: "fullcycle-docker-node-api"
     build: ./api
+    volumes:
+      - ./api:/app
     networks:
       - internal
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   nginx:
     restart: always
     build: ./nginx
