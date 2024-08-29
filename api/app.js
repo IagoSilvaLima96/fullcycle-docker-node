@@ -10,6 +10,10 @@ app.get("/", (req, res) => {
   handle(req, res);
 });
 
+app.get("/ping", (req, res) => {
+  res.json({ data: "pong" });
+});
+
 async function createPerson() {
   await repository.savePerson(faker.person.fullName());
 }

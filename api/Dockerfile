@@ -1,5 +1,7 @@
 FROM node:18-bullseye-slim
 
+RUN apt-get update && apt-get install -y curl
+
 RUN mkdir -p /app && \
   chown -R node:node /app
 
@@ -15,4 +17,4 @@ COPY --chown=node:node . .
 
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/sh", "-c", "npm run dev"]
+ENTRYPOINT ["/bin/sh", "-c", "npm run dev-docker"]

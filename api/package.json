@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "dev-docker": "npm ci && node app.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,9 @@
     "@faker-js/faker": "^8.4.1",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "mysql2": "^3.11.0",
+    "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.4"
   }
 }
