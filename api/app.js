@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
   handle(req, res);
 });
 
-app.get("/ping", (req, res) => {
+app.get("/ping", (_, res) => {
   res.json({ data: "pong" });
 });
 
